@@ -20,9 +20,6 @@
 ?>
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,7 +126,10 @@
               <?php echo "<img src='images/".$row['imagen']."' width='100%' height='250'>";""?>
               <div class="card-body">
                 <h5 class="card-title"><?php echo $row['nombre']?></h5>
-                <p class="card-text"><?php echo $row['descripcion']?></p>
+                <p class="card-text"><?php echo $row['descripcion']?>
+                </p>
+                <p class="card-text"><span>$<?php echo $row['precio']?>
+                </p></span>
                 <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
               </div>
             </div>
