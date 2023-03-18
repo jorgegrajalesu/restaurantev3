@@ -1,3 +1,28 @@
+<?php
+//   funcion para iniciar login o actualizar buffer
+ ob_start();
+?>
+
+<?php
+// // utilizar el archivo conexion.php
+// include_once 'admin/conexion.php';
+
+// // sincronizar la base de datos con una funcion
+
+// $conn = mysqli_connect($host,$user,$pw,$db);
+
+// // control para confirmar el cliente
+// if(isset($_SESSION['idcliente'])==false){
+//     header(location:'index.php');
+// }
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,170 +108,37 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
+     
       <!-- la carta -->
       <div class="row row-cols-1 row-cols-md-3 g-4 p-5" id="carta">
         <h2 class="titulo">La carta</h2>
-        <div class="col">
-          <div class="card">
-            <img src="images/pexels-clem-onojeghuo-175753.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Ensalada</h5>
-              <p class="card-text">Ensalada con pollo y verduras en salsa de soya.</p>
-              <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-            </div>
-          </div>
-        </div>
+        <div class="col">          
+        <?php
+                include_once "admin/conexion.php";
+                // crear la conexion a la bd
+                $conn = mysqli_connect($host,$user,$pw,$db);
+                //crear una consulta a la base de datos
+                $sql = "SELECT * FROM productos;";
+                //preparar el array de resultados
+                $result =mysqli_query($conn,$sql);
+                //estructura de loop para imprimir n datos while
+                while ($row = mysqli_fetch_assoc($result)){
 
-          <div class="col">
+                ?>
             <div class="card">
-              <img src="images/pexels-dana-tentis-262959.jpg" class="card-img-top" alt="...">
+              <?php echo "<img src='images/".$row['imagen']."' width='100%' height='250'>";""?>
               <div class="card-body">
-                <h5 class="card-title">Carne Asada</h5>
-                <p class="card-text">Carne asada con papitas, aguacate y ensalada.</p>
+                <h5 class="card-title"><?php echo $row['nombre']?></h5>
+                <p class="card-text"><?php echo $row['descripcion']?></p>
                 <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
               </div>
             </div>
           </div>
+          <?php
+                }
+         ?>
 
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card">
-              <img src="images/pexels-cottonbro-studio-6554697.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Pollo Asado</h5>
-                <p class="card-text">Pollo asado con papas.</p>
-                <a href="https://wa.me/3105188168?text=Solicita%20tu%20pedido!!" class="btn btn-primary" target="_blank">Pedir</a>
-              </div>
-            </div>
-          </div>
+          
       </div>
 
       <!-- servicios -->
@@ -322,3 +214,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
